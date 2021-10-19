@@ -69,7 +69,7 @@ app.post(`/updateElement`, (req,res)=> {
 db.then(connection => {
     if(connection){
         console.log("Server connected.");
-        app.listen(4000,function(){
+        app.listen( process.env.PORT || 4000,function(){
             console.log("Server listening at port 4000.");
         });
     }
