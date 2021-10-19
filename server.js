@@ -6,6 +6,8 @@ const mongoDB = process.env.DB_URL ;
 const db = mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
@@ -13,8 +15,6 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
     next();
 });
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 const noteSchema = new mongoose.Schema({
     notes:{
